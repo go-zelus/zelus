@@ -1,9 +1,13 @@
 package util
 
 import (
+	"crypto/md5"
+	"encoding/base64"
+	"fmt"
 	"net"
 	"net/http"
 	"strings"
+	"time"
 
 	"golang.org/x/net/websocket"
 )
@@ -80,4 +84,27 @@ func MixMobile(mobile string) string {
 		}
 	}
 	return phone
+}
+
+// MD5编码 32位小写
+func MD5(message string) string {
+	h := md5.New()
+	h.Write([]byte(message))
+	cipher := h.Sum(nil)
+	return fmt.Sprintf("%x", cipher)
+}
+
+// MD5编码 16位小写
+func MD5B16(message string) string {
+	return MD5(message)[8:24]
+}
+
+// Base64 编码
+func Base64(s string) string {
+	return base64.StdEncoding.EncodeToString([]byte(s))
+}
+
+// Timestamp 毫秒时间戳
+func Timestamp() int64 {
+	return time.Now().UnixNano() / 1e6
 }

@@ -4,6 +4,7 @@ go 1.16
 
 require (
 	github.com/AlecAivazis/survey/v2 v2.2.16
+	github.com/dgrijalva/jwt-go v3.2.0+incompatible
 	github.com/fatih/color v1.7.0
 	github.com/gin-gonic/gin v1.7.3
 	github.com/go-redis/redis/v8 v8.11.3

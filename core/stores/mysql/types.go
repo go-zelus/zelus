@@ -4,11 +4,20 @@ import (
 	"database/sql"
 	"encoding/json"
 	"time"
+
+	"github.com/go-zelus/zelus/core/util"
 )
 
 // Datetime 可以适应Null值的时间类型
 type Datetime struct {
 	sql.NullTime
+}
+
+func (d Datetime) Format(t ...string) string {
+	if d.Valid {
+		return util.TimeFormat(d.Time, t...)
+	}
+	return ""
 }
 
 // NewDatetime 创建日期时间类型
